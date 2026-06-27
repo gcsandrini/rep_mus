@@ -11,11 +11,11 @@ def playlist():
     for musica in musicas:
         lista_de_musicas.append("musicas/" + musica)
     return lista_de_musicas
-def botao_play(x):
+def botao_play(lista_de_musica):
     global tocando
     global primeira
     if primeira == True:
-        pygame.mixer.music.load(f'{x[indice_musica]}')
+        pygame.mixer.music.load(f'{lista_de_musica[indice_musica]}')
         pygame.mixer.music.play()
         tocando = True
         primeira = False
@@ -26,22 +26,22 @@ def botao_play(x):
         else:
             pygame.mixer.music.pause()
             tocando = False
-def botao_proximo(x,y,z):
+def botao_proximo(lista_de_musica,label_musica):
     global indice_musica
     indice_musica += 1
-    indice_musica %= len(x)
-    pygame.mixer.music.load(f'{x[indice_musica]}')
+    indice_musica %= len(lista_de_musica)
+    pygame.mixer.music.load(f'{lista_de_musica[indice_musica]}')
     pygame.mixer.music.play()
-    exibir_nome_musica(y,z)
-    return x, indice_musica
-def botao_voltar(x,y,z):
+    exibir_nome_musica(label_musica,lista_de_musica)
+    return lista_de_musica, indice_musica
+def botao_voltar(lista_de_musica,label_musica):
     global indice_musica
     indice_musica -= 1
-    indice_musica %= len(x)
-    pygame.mixer.music.load(f'{x[indice_musica]}')
+    indice_musica %= len(lista_de_musica)
+    pygame.mixer.music.load(f'{lista_de_musica[indice_musica]}')
     pygame.mixer.music.play()
-    exibir_nome_musica(y,z)
-    return x, indice_musica
+    exibir_nome_musica(label_musica,lista_de_musica)
+    return lista_de_musica, indice_musica
 def janela_music_player():
     lista_de_musica = playlist()
     music_player = customtkinter.CTk()
@@ -56,9 +56,9 @@ def janela_music_player():
     label_musica.grid(row=1, column=0, columnspan=3)
     layout_botao_play = customtkinter.CTkButton(music_player, text ='play', command = lambda: botao_play(lista_de_musica), width = 60, height = 60)
     layout_botao_play.grid(row=2, column=1)
-    layout_botao_proximo = customtkinter.CTkButton(music_player, text ='proxima', command = lambda: botao_proximo(lista_de_musica,label_musica,lista_de_musica), width = 45, height = 45)
+    layout_botao_proximo = customtkinter.CTkButton(music_player, text ='proxima', command = lambda: botao_proximo(lista_de_musica,label_musica), width = 45, height = 45)
     layout_botao_proximo.grid(row=2, column=2)
-    layout_botao_voltar = customtkinter.CTkButton(music_player, text ='anterior', command = lambda: botao_voltar(lista_de_musica,label_musica,lista_de_musica), width = 45, height = 45)
+    layout_botao_voltar = customtkinter.CTkButton(music_player, text ='anterior', command = lambda: botao_voltar(lista_de_musica,label_musica), width = 45, height = 45)
     layout_botao_voltar.grid(row=2, column=0)
     exibir_nome_musica(label_musica,lista_de_musica)
     reprodução_automatica(lista_de_musica, music_player)
@@ -66,17 +66,17 @@ def janela_music_player():
 def main():
     pygame.mixer.init()
     janela_music_player()
-def reprodução_automatica(x,y):
+def reprodução_automatica(lista_de_musica, music_player):
     if pygame.mixer.music.get_busy() == False and tocando == True and primeira == False:
-        botao_proximo(x)
-    y.after(1000, lambda: reprodução_automatica(x,y))
-def exibir_nome_musica(x,y):
-    x.configure(text="Nome da música aqui")
-    nome = os.path.basename(y[indice_musica]).replace(".mp3", "")
-    x.configure(text=nome)
-def mostrar_imagem(x):
+        botao_proximo(lista_de_musica)
+    music_player.after(1000, lambda: reprodução_automatica(lista_de_musica, music_player))
+def exibir_nome_musica(label_musica,lista_de_musica):
+    label_musica.configure(text="Nome da música aqui")
+    nome = os.path.basename(lista_de_musica[indice_musica]).replace(".mp3", "")
+    label_musica.configure(text=nome)
+def mostrar_imagem(music_player):
     imagem = Image.open('imagem/gato ouvindo musica.png')
     ctkimagem = customtkinter.CTkImage(imagem,size= (150, 150))
-    label_imagem = customtkinter.CTkLabel(x,image=ctkimagem, text= '')
+    label_imagem = customtkinter.CTkLabel(music_player,image=ctkimagem, text= '')
     label_imagem.grid(row=0, column=0, columnspan=3)
 main()
