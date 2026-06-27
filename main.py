@@ -27,13 +27,14 @@ def botao_play(lista_de_musica):
             pygame.mixer.music.pause()
             tocando = False
 def botao_proximo(lista_de_musica,label_musica):
-    global indice_musica
+    global indice_musica, tocando, primeira
     indice_musica += 1
     indice_musica %= len(lista_de_musica)
     pygame.mixer.music.load(f'{lista_de_musica[indice_musica]}')
     pygame.mixer.music.play()
+    tocando = True
+    primeira = False
     exibir_nome_musica(label_musica,lista_de_musica)
-    return lista_de_musica, indice_musica
 def botao_voltar(lista_de_musica,label_musica):
     global indice_musica
     indice_musica -= 1
@@ -41,7 +42,6 @@ def botao_voltar(lista_de_musica,label_musica):
     pygame.mixer.music.load(f'{lista_de_musica[indice_musica]}')
     pygame.mixer.music.play()
     exibir_nome_musica(label_musica,lista_de_musica)
-    return lista_de_musica, indice_musica
 def janela_music_player():
     lista_de_musica = playlist()
     music_player = customtkinter.CTk()
@@ -61,17 +61,16 @@ def janela_music_player():
     layout_botao_voltar = customtkinter.CTkButton(music_player, text ='anterior', command = lambda: botao_voltar(lista_de_musica,label_musica), width = 45, height = 45)
     layout_botao_voltar.grid(row=2, column=0)
     exibir_nome_musica(label_musica,lista_de_musica)
-    reprodução_automatica(lista_de_musica, music_player)
+    reprodução_automatica(lista_de_musica, music_player, label_musica)
     music_player.mainloop()
 def main():
     pygame.mixer.init()
     janela_music_player()
-def reprodução_automatica(lista_de_musica, music_player):
+def reprodução_automatica(lista_de_musica, music_player,label_musica):
     if pygame.mixer.music.get_busy() == False and tocando == True and primeira == False:
-        botao_proximo(lista_de_musica)
-    music_player.after(1000, lambda: reprodução_automatica(lista_de_musica, music_player))
+        botao_proximo(lista_de_musica,label_musica)
+    music_player.after(1000, lambda: reprodução_automatica(lista_de_musica, music_player, label_musica))
 def exibir_nome_musica(label_musica,lista_de_musica):
-    label_musica.configure(text="Nome da música aqui")
     nome = os.path.basename(lista_de_musica[indice_musica]).replace(".mp3", "")
     label_musica.configure(text=nome)
 def mostrar_imagem(music_player):
