@@ -69,9 +69,9 @@ O autoplay depende do pygame.mixer.music.get_busy()
 📊 Barra de progresso da música
 🎧 Playlists múltiplas
 🌐 Integração com Spotify API
-👨‍💻 Autor
+👨‍💻 Autor: Gabriel Sandrini
 
-Projeto desenvolvido como estudo de:
+Projeto desenvolvido como estudo de: Gabriel Sandrini
 
 Python GUI
 Manipulação de áudio
