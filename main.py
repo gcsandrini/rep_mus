@@ -5,6 +5,24 @@ from PIL import Image
 indice_musica = 0
 tocando = False
 primeira = True
+icone_play = customtkinter.CTkImage(
+    light_image=Image.open("imagem/botao_play.png"),
+    dark_image=Image.open("imagem/botao_play.png"),
+    size=(40, 40))
+icone_pause = customtkinter.CTkImage(
+    light_image=Image.open("imagem/botao_pause.png"),
+    dark_image=Image.open("imagem/botao_pause.png"),
+    size=(40, 40))
+imagem_proxima = Image.open("imagem/botao_proxima.png")
+imagem_voltar = imagem_proxima.transpose(Image.FLIP_LEFT_RIGHT)
+icone_proxima = customtkinter.CTkImage(
+    light_image=imagem_proxima,
+    dark_image=imagem_proxima,
+    size=(30, 30))
+icone_voltar = customtkinter.CTkImage(
+    light_image=imagem_voltar,
+    dark_image=imagem_voltar,
+    size=(30, 30))
 def playlist():
     lista_de_musicas = []
     musicas = os.listdir('musicas')
@@ -54,13 +72,28 @@ def janela_music_player():
     mostrar_imagem(music_player)
     label_musica = customtkinter.CTkLabel(music_player, text="Nenhuma música")
     label_musica.grid(row=1, column=0, columnspan=3)
-    layout_botao_play = customtkinter.CTkButton(music_player, text ='play', command = lambda: botao_play(lista_de_musica), width = 60, height = 60)
+    def alternar_play_pause():
+        botao_play(lista_de_musica)
+        layout_botao_play.configure(image=icone_pause if tocando else icone_play)
+    layout_botao_play = customtkinter.CTkButton(
+        music_player, text='', image=icone_play,
+        command=alternar_play_pause,
+        fg_color="transparent", hover_color="#2a2a2a",
+        width=60, height=60)
     layout_botao_play.grid(row=2, column=1)
-    layout_botao_proximo = customtkinter.CTkButton(music_player, text ='proxima', command = lambda: botao_proximo(lista_de_musica,label_musica), width = 45, height = 45)
+    layout_botao_proximo = customtkinter.CTkButton(
+        music_player, text='', image=icone_proxima,
+        command=lambda: botao_proximo(lista_de_musica, label_musica),
+        fg_color="transparent", hover_color="#2a2a2a",
+        width=45, height=45)
     layout_botao_proximo.grid(row=2, column=2)
-    layout_botao_voltar = customtkinter.CTkButton(music_player, text ='anterior', command = lambda: botao_voltar(lista_de_musica,label_musica), width = 45, height = 45)
+    layout_botao_voltar = customtkinter.CTkButton(
+        music_player, text='', image=icone_voltar,
+        command=lambda: botao_voltar(lista_de_musica, label_musica),
+        fg_color="transparent", hover_color="#2a2a2a",
+        width=45, height=45)
     layout_botao_voltar.grid(row=2, column=0)
-    exibir_nome_musica(label_musica,lista_de_musica)
+    exibir_nome_musica(label_musica, lista_de_musica)
     reprodução_automatica(lista_de_musica, music_player, label_musica)
     music_player.mainloop()
 def main():
