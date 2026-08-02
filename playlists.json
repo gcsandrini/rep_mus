@@ -1,0 +1,11 @@
+{
+  "teste 1": [
+    "musicas/roxanne.mp3",
+    "musicas/coqueta.mp3",
+    "musicas/from the start.mp3"
+  ],
+  "teste 2": [
+    "musicas/from the start.mp3",
+    "musicas/coqueta.mp3"
+  ]
+}
