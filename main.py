@@ -73,7 +73,8 @@ def playlist():
     lista_de_musicas = []
     musicas = os.listdir(PASTA_MUSICAS)
     for musica in musicas:
-        lista_de_musicas.append(os.path.join(PASTA_MUSICAS, musica))
+        if musica.lower().endswith('.mp3'):
+            lista_de_musicas.append(os.path.join(PASTA_MUSICAS, musica))
     return lista_de_musicas
 def botao_play(lista_de_musica):
     global tocando
