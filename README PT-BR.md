@@ -15,4 +15,4 @@
 3. As seguintes bibliotecas devem ser instaladas no python 3.12.3: customtkinter, pygame, mutagen, pillow(apenas o modulo PIL) e yt-dlp
 4. Execute o programa pelo proprio vscode ou IDE da sua preferencia
 
-Tambem é possivel instalar a versao contendo o projeto inteiro como executavel. Assim excluindo o trabalho de instalar o python 3.12.3 e as bibliotecas citadas acima pois o executavel funciona como o proprio interpretador empacotando tanto o main como as bibliotecas e o proprio python
+Tambem é possivel instalar a versao contendo o projeto inteiro como executavel através do arquivo zip chamado de dist_final. Assim excluindo o trabalho de instalar o python 3.12.3 e as bibliotecas citadas acima pois o executavel funciona como o proprio interpretador empacotando tanto o main como as bibliotecas e o proprio python
