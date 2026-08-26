@@ -15,4 +15,4 @@ Make sure Python 3.12.3 is installed.
 The following libraries must be installed for Python 3.12.3: customtkinter, pygame, mutagen, pillow (only the PIL module), and yt-dlp.
 Run the program using VS Code or any IDE of your choice.
 
-It is also possible to install the version containing the entire project as an executable. This eliminates the need to install Python 3.12.3 and the libraries mentioned above, since the executable works as a standalone package, bundling the main program, the required libraries, and Python itself.
+It is also possible to install the entire project as an executable through the `.zip` file named `dist_final`. This eliminates the need to install Python 3.12.3 or any of the libraries mentioned above, as the executable works independently by bundling the main program, the required libraries, and Python itself.
