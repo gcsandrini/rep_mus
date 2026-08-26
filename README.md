@@ -1,78 +1,18 @@
-# 🎵 Music Player em Python
+# Player de musica
+![Linguagem mais utilizada](https://img.shields.io/github/languages/top/gcsandrini/rep_mus)
+![Último commit](https://img.shields.io/github/last-commit/gcsandrini/rep_mus)
+> Um player de musica construido exclusivamente para fins de estudo, capaz de baixar musicas diretamente de links do youtube e ouvi-las e ate montar playlist com as musicas escolhidas
+### Funcionalidades
+- Este projeto é capaz de baixar musicas diretamente para de links do youtube
+- Este projeto tem a função de criação e edição de playlists
+- Este projeto possui uma interface bastante intuitiva
+- Este projeto é bastante leve
+- Este projeto armazena os dados (playlists, preferencias de volume e tempo decorrido na ultima musica tocada) entre sessões
+- Este projeto é feito 100% em python
+## Como instalar e rodar
+1. Clone o repositório
+2. Certifique-se de que o python 3.12.3 esta instalado
+3. As seguintes bibliotecas devem ser instaladas no python 3.12.3: customtkinter, pygame, mutagen, pillow(apenas o modulo PIL) e yt-dlp
+4. Execute o programa pelo proprio vscode ou IDE da sua preferencia
 
-Um reprodutor de música simples feito com **Python**, usando **CustomTkinter**, **Pygame** e **Pillow**.  
-O projeto permite tocar músicas de uma pasta local com interface gráfica e controles básicos de reprodução.
-
----
-
-## 🚀 Funcionalidades
-
-- ▶️ Play / Pause de músicas
-- ⏭️ Próxima música
-- ⏮️ Música anterior
-- 🔁 Reprodução automática ao finalizar a música
-- 📃 Exibição do nome da música atual
-- 🖼️ Interface gráfica com imagem ilustrativa
-- 📁 Leitura automática de músicas da pasta `musicas/`
-
----
-
-## 🛠️ Tecnologias usadas
-
-- Python 3
-- CustomTkinter
-- Pygame
-- Pillow (PIL)
-- OS (biblioteca padrão)
-
----
-
-## 📂 Estrutura do projeto
-projeto/
-│
-├── main.py
-├── musicas/
-│ ├── musica1.mp3
-│ ├── musica2.mp3
-│
-├── imagem/
-│ └── gato ouvindo musica.png
-
-
----
-
-## ▶️ Como executar
-
-### 1. Instale as dependências:
-
-```bash
-pip install customtkinter pygame pillow
-2. Adicione músicas
-
-Coloque arquivos .mp3 dentro da pasta:
-
-musicas/
-3. Execute o projeto
-python main.py
-⚙️ Como funciona
-O programa lê automaticamente todas as músicas da pasta musicas/
-Usa o pygame.mixer para tocar áudio
-Interface construída com customtkinter
-Um loop com .after() verifica quando a música termina e chama a próxima automaticamente
-📌 Observações
-Funciona melhor com arquivos .mp3
-A ordem das músicas segue a ordem da pasta
-O autoplay depende do pygame.mixer.music.get_busy()
-📈 Possíveis melhorias futuras
-🔀 Shuffle (aleatório)
-🔁 Repeat (repetir música)
-📊 Barra de progresso da música
-🎧 Playlists múltiplas
-🌐 Integração com Spotify API
-👨‍💻 Autor: Gabriel Sandrini
-
-Projeto desenvolvido como estudo de: Gabriel Sandrini
-
-Python GUI
-Manipulação de áudio
-Estruturação de projetos
+Tambem é possivel instalar a versao contendo o projeto inteiro como executavel. Assim excluindo o trabalho de instalar o python 3.12.3 e as bibliotecas citadas acima pois o executavel funciona como o proprio interpretador empacotando tanto o main como as bibliotecas e o proprio python
